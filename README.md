@@ -3,8 +3,8 @@
 This repository contains source code and slides for the talk "Fair machine learning" at [Cascadia R Conf](https://cascadiarconf.org/) in June 2024.
 
 * The **slides** for the talk are available [here](https://simonpcouch.github.io/cascadia-24).
-* The **example analysis** that these slides are based on is available [here](https://www.tidymodels.org/learn/work/fairness-detectors/).
-* Another **example analysis** demonstrating a fairness-oriented modeling workflow is [here](https://www.tidymodels.org/learn/work/fairness-readmission/).
+* The example analysis **Are GPT detectors fair?** is available [here](https://www.tidymodels.org/learn/work/fairness-detectors/).
+* The example analysis **Fair prediction of hospital readmission** is [here](https://www.tidymodels.org/learn/work/fairness-readmission/).
 
 To learn more about data science and machine learning with R,
 
