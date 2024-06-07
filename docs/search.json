@@ -1,5 +1,47 @@
 [
   {
+    "objectID": "index.html#proposal-performant-models-are-fair",
+    "href": "index.html#proposal-performant-models-are-fair",
+    "title": "",
+    "section": "Proposal: Performant models are fair",
+    "text": "Proposal: Performant models are fair\n\nApply calibration to correct for correlated errors."
+  },
+  {
+    "objectID": "index.html#proposal-performant-models-are-fair-1",
+    "href": "index.html#proposal-performant-models-are-fair-1",
+    "title": "",
+    "section": "Proposal: Performant models are fair",
+    "text": "Proposal: Performant models are fair\n\n\nPerhaps this is better?"
+  },
+  {
+    "objectID": "index.html#proposal-performant-models-are-fair-2",
+    "href": "index.html#proposal-performant-models-are-fair-2",
+    "title": "",
+    "section": "Proposal: Performant models are fair",
+    "text": "Proposal: Performant models are fair\nLet’s plot the errors:\n\n\n…let’s not forget those y-axis units."
+  },
+  {
+    "objectID": "index.html#proposal-performant-models-are-fair-3",
+    "href": "index.html#proposal-performant-models-are-fair-3",
+    "title": "",
+    "section": "Proposal: Performant models are fair",
+    "text": "Proposal: Performant models are fair\nLet’s plot the errors:"
+  },
+  {
+    "objectID": "index.html#proposal-similar-percentage-error-is-most-fair",
+    "href": "index.html#proposal-similar-percentage-error-is-most-fair",
+    "title": "",
+    "section": "Proposal: Similar percentage error is most fair",
+    "text": "Proposal: Similar percentage error is most fair"
+  },
+  {
+    "objectID": "index.html#defining-fairness-1",
+    "href": "index.html#defining-fairness-1",
+    "title": "",
+    "section": "Defining fairness",
+    "text": "Defining fairness\nWhat was our process?\n\n\nTake some morally held belief about fairness\nFind an evaluation metric that reflects that belief"
+  },
+  {
     "objectID": "index.html#the-hard-parts",
     "href": "index.html#the-hard-parts",
     "title": "",

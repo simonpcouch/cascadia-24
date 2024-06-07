@@ -38,7 +38,7 @@ regressivity <-
   mutate(
     Truth = (Truth + .9) * 300,
     Prediction = (Prediction + .9) * 300,
-    Prediction = Prediction + rnorm(nrow(.), 0, 7)
+    Prediction = Prediction + rnorm(nrow(.), 0, 12)
   )
 
 regressivity_plot <- 
@@ -119,11 +119,171 @@ _The same model parameters can result in behavior that feels totally benign when
 
 ---
 
-...some content. 
+```{r}
+#| label: "plot-regressivity-home-2"
+#| echo: false
+#| fig-width: 5
+#| fig-align: "center"
+#| fig-alt: "The same tax assessment plot from earlier."
+regressivity_plot +
+  labs(
+    title = "Predicted vs. Actual Home Value",
+    subtitle = "Tax assessment model overvalues\ncheaper homes, and vice versa.",
+    x = "Property Value",
+    y = "Predicted Property Value"
+  ) +
+  scale_x_continuous(labels = ~paste0("$", as.character(.x), "k")) +
+  scale_y_continuous(labels = ~paste0("$", as.character(.x), "k"))
+```
 
-* move slopes / exponents around.
-* higher variability on lower end
+. . .
 
+Proposal: The most performant model is the most fair model.
+
+## Proposal: Performant models are fair
+
+. . .
+
+Apply calibration to correct for correlated errors.
+
+## Proposal: Performant models are fair
+
+```{r}
+#| label: "plot-performant-home"
+#| echo: false
+#| fig-width: 5
+#| fig-align: "center"
+#| fig-alt: "A dot plot of observed vs. predicted home values, except that the predicted values are now centered around the identity line (representing perfect predictions). Errors are i.i.d."
+set.seed(1)
+iid <-
+  tibble(
+    Truth = seq(-.7, .7, length.out = 100),
+    Prediction = Truth
+  ) %>%
+  mutate(
+    Truth = (Truth + .9) * 300,
+    Prediction = (Prediction + .9) * 300,
+    Prediction = Prediction + rnorm(nrow(.), 0, 12)
+  )
+
+iid_plot <- iid %>%
+  ggplot() +
+  geom_point(aes(x = Truth, y = Prediction), color = "#CA225E") +
+  geom_line(aes(x = Truth, y = Truth), linetype = "dashed") +
+  tune::coord_obs_pred() +
+  theme(plot.subtitle = element_text(face="italic")) +
+  labs(
+    subtitle = "Tax assessment model predicts with a \nhigh R-squared, errors i.i.d.",
+    x = "Property Value",
+    y = "Predicted Property Value"
+  ) +
+  scale_x_continuous(labels = ~paste0("$", as.character(.x), "k")) +
+  scale_y_continuous(labels = ~paste0("$", as.character(.x), "k"))
+
+iid_plot
+```
+
+. . .
+
+
+Perhaps this is better?
+
+## Proposal: Performant models are fair
+
+Let's plot the errors:
+
+```{r}
+#| label: "plot-performant-residuals"
+#| echo: false
+#| fig-width: 5
+#| fig-align: "center"
+#| fig-alt: "A plot of the distribution of errors in the previous plot: errors follow a similar distribution across the distribution of property values."
+residual_plot <- iid %>%
+  mutate(Residuals = Truth - Prediction) %>%
+  ggplot() +
+  aes(x = Truth, y = Residuals) +
+  labs(x = "Property Value", "Residual (True Value Minus Predicted)") +
+  geom_point(color = "#CA225E") +
+  scale_x_continuous(labels = ~paste0("$", as.character(.x), "k"))
+
+residual_plot
+```
+. . .
+
+...let's not forget those y-axis units.
+
+## Proposal: Performant models are fair
+
+Let's plot the errors:
+
+```{r}
+#| label: "plot-performant-residuals-2"
+#| echo: false
+#| fig-width: 5
+#| fig-align: "center"
+#| fig-alt: "The same plot as before, but the y axis has been labeled as tens of thousands of dollars."
+residual_plot +
+  scale_y_continuous(labels = ~paste0("$", as.character(.x), "k"))
+```
+
+<br>
+
+## Proposal: Similar percentage error is most fair
+
+<!-- If we could, we'd just "shrink" the errors for those smaller property values. If we could have done that, though, we wouldn't need a model at all. So, artifically inflate errors on the upper end of the distribution by multiplying the prediction by a random factor that increases in magnitude with the predicted value. -->
+
+. . .
+
+```{r}
+#| label: "plot-mpe-home"
+#| echo: false
+#| fig-width: 5
+#| fig-align: "center"
+#| fig-alt: ""
+set.seed(1)
+mpe <-
+  tibble(
+    Truth = seq(-.7, .7, length.out = 100),
+    Prediction = Truth
+  ) %>%
+  mutate(
+    Truth = (Truth + .9) * 300,
+    Prediction = (Prediction + .9) * 300
+  ) %>%
+  rowwise() %>%
+  mutate(
+    Prediction = Prediction + rnorm(1, 0, Prediction / sqrt(300))
+  )
+
+mpe_plot <- mpe %>%
+  ggplot() +
+  geom_point(aes(x = Truth, y = Prediction), color = "#CA225E") +
+  geom_line(aes(x = Truth, y = Truth), linetype = "dashed") +
+  tune::coord_obs_pred() +
+  theme(plot.subtitle = element_text(face="italic")) +
+  labs(
+    subtitle = "Tax assessment model that predicts with \nsimilar percentage error across distribution.",
+    x = "Property Value",
+    y = "Predicted Property Value"
+  ) +
+  scale_x_continuous(labels = ~paste0("$", as.character(.x), "k")) +
+  scale_y_continuous(labels = ~paste0("$", as.character(.x), "k"))
+
+mpe_plot
+```
+
+----
+
+## Defining fairness
+
+What was our process?
+
+:::incremental
+
+* Take some morally held belief about fairness
+* Find an evaluation metric that reflects that belief
+
+:::
 
 # Defining fairness {background-color="#CA225E"}
 
@@ -139,7 +299,11 @@ _Definitions of fairness "are not mathematically or morally compatible in genera
 <span style="font-size:150%; color:#ffffff;">Mitchell et al. 2021</span>
 :::
 
-# The whole system {background-color="#CA225E"}
+# <span style="font-size:40%"> ...but there's one more step </span> {background-color="#CA225E"}
+
+. . .
+
+<span style="font-size:300%">The whole system</span> 
 
 ----
 

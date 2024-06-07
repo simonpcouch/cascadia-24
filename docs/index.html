@@ -373,18 +373,69 @@
 </section>
 <section class="slide level2">
 
-<p>…some content.</p>
+
+<img data-src="index_files/figure-revealjs/plot-regressivity-home-2-1.png" alt="The same tax assessment plot from earlier." width="480" class="r-stretch quarto-figure-center"><div class="fragment">
+<p>Proposal: The most performant model is the most fair model.</p>
+</div>
+</section>
+<section id="proposal-performant-models-are-fair" class="slide level2">
+<h2>Proposal: Performant models are fair</h2>
+<div class="fragment">
+<p>Apply calibration to correct for correlated errors.</p>
+</div>
+</section>
+<section id="proposal-performant-models-are-fair-1" class="slide level2">
+<h2>Proposal: Performant models are fair</h2>
+
+<img data-src="index_files/figure-revealjs/plot-performant-home-1.png" alt="A dot plot of observed vs. predicted home values, except that the predicted values are now centered around the identity line (representing perfect predictions). Errors are i.i.d." width="480" class="r-stretch quarto-figure-center"><div class="fragment">
+<p>Perhaps this is better?</p>
+</div>
+</section>
+<section id="proposal-performant-models-are-fair-2" class="slide level2">
+<h2>Proposal: Performant models are fair</h2>
+<p>Let’s plot the errors:</p>
+
+<img data-src="index_files/figure-revealjs/plot-performant-residuals-1.png" alt="A plot of the distribution of errors in the previous plot: errors follow a similar distribution across the distribution of property values." width="480" class="r-stretch quarto-figure-center"><div class="fragment">
+<p>…let’s not forget those y-axis units.</p>
+</div>
+</section>
+<section id="proposal-performant-models-are-fair-3" class="slide level2">
+<h2>Proposal: Performant models are fair</h2>
+<p>Let’s plot the errors:</p>
+
+<img data-src="index_files/figure-revealjs/plot-performant-residuals-2-1.png" alt="The same plot as before, but the y axis has been labeled as tens of thousands of dollars." width="480" class="r-stretch quarto-figure-center"><p><br></p>
+</section>
+<section id="proposal-similar-percentage-error-is-most-fair" class="slide level2">
+<h2>Proposal: Similar percentage error is most fair</h2>
+<!-- If we could, we'd just "shrink" the errors for those smaller property values. If we could have done that, though, we wouldn't need a model at all. So, artifically inflate errors on the upper end of the distribution by multiplying the prediction by a random factor that increases in magnitude with the predicted value. -->
+<div class="fragment">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-revealjs/plot-mpe-home-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="defining-fairness-1" class="slide level2">
+<h2>Defining fairness</h2>
+<p>What was our process?</p>
+<div>
 <ul>
-<li>move slopes / exponents around.</li>
-<li>higher variability on lower end</li>
+<li class="fragment">Take some morally held belief about fairness</li>
+<li class="fragment">Find an evaluation metric that reflects that belief</li>
 </ul>
+</div>
 </section></section>
-<section id="defining-fairness-1" class="title-slide slide level1 center" data-background-color="#CA225E">
+<section id="defining-fairness-2" class="title-slide slide level1 center" data-background-color="#CA225E">
 <h1>Defining fairness</h1>
 <p><br> <br></p>
 </section>
 
-<section id="defining-fairness-2" class="title-slide slide level1 center" data-background-color="#CA225E">
+<section id="defining-fairness-3" class="title-slide slide level1 center" data-background-color="#CA225E">
 <h1>Defining fairness</h1>
 <p><em>Definitions of fairness “are not mathematically or morally compatible in general.”</em><span class="math inline">\(^1\)</span></p>
 <div class="footer">
@@ -393,9 +444,11 @@
 </section>
 
 <section>
-<section id="the-whole-system" class="title-slide slide level1 center" data-background-color="#CA225E">
-<h1>The whole system</h1>
-
+<section id="but-theres-one-more-step" class="title-slide slide level1 center" data-background-color="#CA225E">
+<h1><span style="font-size:40%"> …but there’s one more step </span></h1>
+<div class="fragment">
+<p><span style="font-size:300%">The whole system</span></p>
+</div>
 </section>
 <section class="slide level2">
 
@@ -408,7 +461,7 @@
 </ul>
 </section></section>
 <section>
-<section id="the-whole-system-1" class="title-slide slide level1 center" data-background-color="#CA225E">
+<section id="the-whole-system" class="title-slide slide level1 center" data-background-color="#CA225E">
 <h1>The whole system</h1>
 <div class="fragment">
 <p><em>Mitigating unfairness requires a focus on more than just the model.</em></p>
