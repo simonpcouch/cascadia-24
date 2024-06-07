@@ -299,11 +299,13 @@ _Definitions of fairness "are not mathematically or morally compatible in genera
 <span style="font-size:150%; color:#ffffff;">Mitchell et al. 2021</span>
 :::
 
-# <span style="font-size:40%"> ...but there's one more step </span> {background-color="#CA225E"}
+# {background-color="#CA225E"}
+
+<span style="font-size:140%"> ...but there's one more step </span>
 
 . . .
 
-<span style="font-size:300%">The whole system</span> 
+<span style="font-size:300%">**The whole system**</span> 
 
 ----
 
@@ -333,8 +335,9 @@ _Mitigating unfairness requires a focus on more than just the model._
 
 :::
 
-# <span style="font-size:70%">Choose tools that support thinking about the whole system</span>  {background-color="#CA225E"}
+# {background-color="#CA225E"}
 
+<span style="font-size:170%">Choose tools that support thinking about the hard parts.</span> 
 
 ## Resources
 
@@ -357,7 +360,7 @@ _Mitigating unfairness requires a focus on more than just the model._
 :::
 
 ::: {.column width="60%"}
-![](figures/article_detectors.png){.absolute top=5% left=50% width=40% fig-alt='Screenshot of an analysis titled "Are GPT detectors fair?"' style="box-shadow: 5px 5px 10px gray;"}
+![](figures/article_detectors.png){.absolute top=5% left=45% width=40% fig-alt='Screenshot of an analysis titled "Are GPT detectors fair?"' style="box-shadow: 5px 5px 10px gray;"}
 
 :::
 :::
@@ -372,19 +375,17 @@ _Mitigating unfairness requires a focus on more than just the model._
 :::
 
 ::: {.column width="60%"}
-![](figures/article_detectors.png){.absolute top=5% left=50% width=40% fig-alt='Screenshot of an analysis titled "Are GPT detectors fair?"' style="box-shadow: 5px 5px 10px gray;"}
+![](figures/article_detectors.png){.absolute top=5% left=45% width=40% fig-alt='Screenshot of an analysis titled "Are GPT detectors fair?"' style="box-shadow: 5px 5px 10px gray;"}
 
-![](figures/article_readmission.png){.absolute top=45% left=50% width=40% fig-alt='Screenshot of an analysis titled "Fair prediction of hospital readmission?"' style="box-shadow: 5px 5px 10px gray;"}
+![](figures/article_readmission.png){.absolute top=45% left=45% width=40% fig-alt='Screenshot of an analysis titled "Fair prediction of hospital readmission?"' style="box-shadow: 5px 5px 10px gray;"}
 :::
 :::
 
 
 ## Resources
 
+-   [tmwr.org]{style="color:#CA225E;"}
+-   [tidymodels.org]{style="color:#CA225E;"}
+-   Slides and example notebooks:
 
-Slides and example notebooks:
-
-<br>
-<br>
-
-<center>[github.com/simonpcouch/cascadia-24]{style="color:#CA225E;"}</center>
+<span style="font-size:130%"><center>[github.com/simonpcouch/cascadia-24]{style="color:#CA225E;"}</center></span>
