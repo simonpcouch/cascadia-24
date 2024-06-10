@@ -163,7 +163,7 @@ iid <-
   mutate(
     Truth = (Truth + .9) * 300,
     Prediction = (Prediction + .9) * 300,
-    Prediction = Prediction + rnorm(nrow(.), 0, 12)
+    Prediction = Prediction + rnorm(nrow(.), 0, 25)
   )
 
 iid_plot <- iid %>%
@@ -252,7 +252,7 @@ mpe <-
   ) %>%
   rowwise() %>%
   mutate(
-    Prediction = Prediction + rnorm(1, 0, Prediction / sqrt(300))
+    Prediction = Prediction + rnorm(1, 0, Prediction / 5)
   )
 
 mpe_plot <- mpe %>%
@@ -285,6 +285,19 @@ What was our process?
 
 :::
 
+. . .
+
+The metrics, though, ultimately reflect the belief system that they arose from...
+
+## Defining fairness
+
+What was our process?
+
+* Take some morally held belief about fairness
+* Find an evaluation metric that reflects that belief
+
+The metrics, though, ultimately reflect the belief system that they arose from, and are thus no more compatible than our morally held beliefs of what is fair.
+
 # Defining fairness {background-color="#CA225E"}
 
 <br>
@@ -309,12 +322,24 @@ _Definitions of fairness "are not mathematically or morally compatible in genera
 
 ----
 
-some content: show possible resulting plots of taxation
+## The whole system
 
-* fixed proportion
-* adjust proportion
-* raise proportion as value grows
-* cut off at certain
+How will these predictions even be used, though? Consider:
+
+:::incremental
+
+* **Fixed Percentage**: All properties taxed at .9% assessed value
+* **Homeowner Exemption**: First xyz not taxed, then .9% assessed value
+* **Transitioning from regressivity**: Is a rapid change in assessment unfair?
+
+:::
+
+<!-- First example might prefer R^2, second might prefer MPE, third might prefer some blend of the regressive example and another. -->
+
+<!-- * fixed proportion -->
+<!-- * adjust proportion -->
+<!-- * raise proportion as value grows -->
+<!-- * cut off at certain -->
 
 
 # The whole system {background-color="#CA225E"}

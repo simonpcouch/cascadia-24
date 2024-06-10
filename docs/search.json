@@ -39,7 +39,21 @@
     "href": "index.html#defining-fairness-1",
     "title": "",
     "section": "Defining fairness",
-    "text": "Defining fairness\nWhat was our process?\n\n\nTake some morally held belief about fairness\nFind an evaluation metric that reflects that belief"
+    "text": "Defining fairness\nWhat was our process?\n\n\nTake some morally held belief about fairness\nFind an evaluation metric that reflects that belief\n\n\n\nThe metrics, though, ultimately reflect the belief system that they arose from…"
+  },
+  {
+    "objectID": "index.html#defining-fairness-2",
+    "href": "index.html#defining-fairness-2",
+    "title": "",
+    "section": "Defining fairness",
+    "text": "Defining fairness\nWhat was our process?\n\nTake some morally held belief about fairness\nFind an evaluation metric that reflects that belief\n\nThe metrics, though, ultimately reflect the belief system that they arose from, and are thus no more compatible than our morally held beliefs of what is fair."
+  },
+  {
+    "objectID": "index.html#the-whole-system",
+    "href": "index.html#the-whole-system",
+    "title": "",
+    "section": "The whole system",
+    "text": "The whole system\nHow will these predictions even be used, though? Consider:\n\n\nFixed Percentage: All properties taxed at .9% assessed value\nHomeowner Exemption: First xyz not taxed, then .9% assessed value\nTransitioning from regressivity: Is a rapid change in assessment unfair?"
   },
   {
     "objectID": "index.html#the-hard-parts",
