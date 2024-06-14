@@ -352,20 +352,28 @@
 </section>
 <section class="slide level2">
 
+<!-- This was actually quite a big deal---variants of this story have appeared in publications across the country in the last 10 years. One of a swath of examples where deployment of predictive models deepens inequities in our communities. -->
 
-<img data-src="figures/chicago_tribune.gif" style="box-shadow: 5px 5px 10px gray;" alt="" class="r-stretch"></section>
+<img data-src="figures/chicago_tribune.gif" style="display: block; margin-left: auto; margin-right: auto; width: 75%; box-shadow: 5px 5px 10px gray;" alt="" class="r-stretch"></section>
 <section class="slide level2">
 
-
-<img data-src="figures/survey_results.png" style="box-shadow: 5px 5px 10px gray;" alt="" class="r-stretch"></section>
-<section class="slide level2">
-
-<p><br><br><br> <img data-src="figures/scholar_search.png" style="box-shadow: 5px 5px 10px gray;" alt=""></p>
+<!-- Borne of these examples is a diverse and active research community, aiming to answer the questions 1) What does it mean for a machine learning system to act fairly? and 2) how can we make systems act more fairly? -->
+<p><br><br><br> <img data-src="figures/scholar_search.png" style="display: block; margin-left: auto; margin-right: auto; width: 80%; box-shadow: 5px 5px 10px gray;" alt=""></p>
 </section>
 <section class="slide level2">
 
-<p><br><br><br> <img data-src="figures/scholar_search_emph.png" style="box-shadow: 5px 5px 10px gray;" alt=""></p>
-</section></section>
+<p><br><br><br> <img data-src="figures/scholar_search_emph.png" style="display: block; margin-left: auto; margin-right: auto; width: 80%; box-shadow: 5px 5px 10px gray;" alt=""></p>
+</section>
+<section class="slide level2">
+
+<!-- I work on a set of packages for machine learning in R... -->
+
+<img data-src="figures/packages.png" style="display: block; margin-left: auto; margin-right: auto; width: 50%;" alt="" class="r-stretch"></section>
+<section class="slide level2">
+
+<!-- We run an annual user survey... -->
+
+<img data-src="figures/survey_results.png" style="display: block; margin-left: auto; margin-right: auto; width: 40%; box-shadow: 5px 5px 10px gray;" alt="" class="r-stretch"></section></section>
 <section>
 <section id="defining-fairness" class="title-slide slide level1 center" data-background-color="#CA225E">
 <h1>Defining fairness</h1>
@@ -403,7 +411,7 @@
 <h2>Proposal: Performant models are fair</h2>
 <p>Let’s plot the errors:</p>
 
-<img data-src="index_files/figure-revealjs/plot-performant-residuals-2-1.png" alt="The same plot as before, but the y axis has been labeled as tens of thousands of dollars." width="480" class="r-stretch quarto-figure-center"><p><br></p>
+<img data-src="index_files/figure-revealjs/plot-performant-residuals-2-1.png" alt="The same plot as before, but the y axis has been labeled as tens of thousands of dollars." width="480" class="r-stretch quarto-figure-center"><p>…let’s not forget those y-axis units.</p>
 </section>
 <section id="proposal-similar-percentage-error-is-most-fair" class="slide level2">
 <h2>Proposal: Similar percentage error is most fair</h2>
@@ -465,15 +473,20 @@
 </section>
 <section id="the-whole-system" class="slide level2">
 <h2>The whole system</h2>
-<p>How will these predictions even be used, though? Consider:</p>
-<div>
-<ul>
-<li class="fragment"><strong>Fixed Percentage</strong>: All properties taxed at .9% assessed value</li>
-<li class="fragment"><strong>Homeowner Exemption</strong>: First xyz not taxed, then .9% assessed value</li>
-<li class="fragment"><strong>Transitioning from regressivity</strong>: Is a rapid change in assessment unfair?</li>
-</ul>
-</div>
-<!-- First example might prefer R^2, second might prefer MPE, third might prefer some blend of the regressive example and another. -->
+<p>How will these predictions even be used, though?</p>
+</section>
+<section id="the-whole-system-fixed-percentage" class="slide level2">
+<h2>The whole system: fixed percentage</h2>
+<p>All properties taxed at .9% assessed value</p>
+<!-- :::incremental -->
+<!-- * **Fixed Percentage**: All properties taxed at .9% assessed value -->
+<!-- - maybe MPE... show resulting taxes from the three different approaches -->
+<!-- * **Homeowner Exemption**: First xyz not taxed, then .9% assessed value -->
+<!-- - maybe different curves for different owners... -->
+<!-- * **Transitioning from regressivity**: Is a rapid change in assessment unfair? -->
+<!-- - some blend of regressive and R^2 over time -->
+<!-- ::: -->
+<!-- First example might prefer MPE, second might prefer R^2, third might prefer some blend of the regressive example and another. -->
 <!-- * fixed proportion -->
 <!-- * adjust proportion -->
 <!-- * raise proportion as value grows -->

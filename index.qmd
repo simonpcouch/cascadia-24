@@ -99,21 +99,33 @@ _The same model parameters can result in behavior that feels totally benign when
 
 ---
 
+<!-- This was actually quite a big deal---variants of this story have appeared in publications across the country in the last 10 years. One of a swath of examples where deployment of predictive models deepens inequities in our communities. -->
 
-![](figures/chicago_tribune.gif){fig-alt='' style="box-shadow: 5px 5px 10px gray;"}
+![](figures/chicago_tribune.gif){fig-alt='' style="display: block; margin-left: auto; margin-right: auto; width: 75%; box-shadow: 5px 5px 10px gray;"}
+
 ---
 
-![](figures/survey_results.png){fig-alt='' style="box-shadow: 5px 5px 10px gray;"}
+<!-- Borne of these examples is a diverse and active research community, aiming to answer the questions 1) What does it mean for a machine learning system to act fairly? and 2) how can we make systems act more fairly? -->
+
+<br><br><br>
+![](figures/scholar_search.png){fig-alt='' style="display: block; margin-left: auto; margin-right: auto; width: 80%; box-shadow: 5px 5px 10px gray;"}
 
 ---
 
 <br><br><br>
-![](figures/scholar_search.png){fig-alt='' style="box-shadow: 5px 5px 10px gray;"}
+![](figures/scholar_search_emph.png){fig-alt='' style="display: block; margin-left: auto; margin-right: auto; width: 80%; box-shadow: 5px 5px 10px gray;"}
 
 ---
 
-<br><br><br>
-![](figures/scholar_search_emph.png){fig-alt='' style="box-shadow: 5px 5px 10px gray;"}
+<!-- I work on a set of packages for machine learning in R... -->
+
+![](figures/packages.png){fig-alt=''   style="display: block; margin-left: auto; margin-right: auto; width: 50%;"}
+
+---
+
+<!-- We run an annual user survey... -->
+
+![](figures/survey_results.png){fig-alt='' style="display: block; margin-left: auto; margin-right: auto; width: 40%; box-shadow: 5px 5px 10px gray;"}
 
 # Defining fairness {background-color="#CA225E"}
 
@@ -226,7 +238,7 @@ residual_plot +
   scale_y_continuous(labels = ~paste0("$", as.character(.x), "k"))
 ```
 
-<br>
+...let's not forget those y-axis units.
 
 ## Proposal: Similar percentage error is most fair
 
@@ -324,17 +336,28 @@ _Definitions of fairness "are not mathematically or morally compatible in genera
 
 ## The whole system
 
-How will these predictions even be used, though? Consider:
+How will these predictions even be used, though?
 
-:::incremental
+## The whole system: fixed percentage
 
-* **Fixed Percentage**: All properties taxed at .9% assessed value
-* **Homeowner Exemption**: First xyz not taxed, then .9% assessed value
-* **Transitioning from regressivity**: Is a rapid change in assessment unfair?
+All properties taxed at .9% assessed value
 
-:::
+```{r}
 
-<!-- First example might prefer R^2, second might prefer MPE, third might prefer some blend of the regressive example and another. -->
+```
+
+
+<!-- :::incremental -->
+
+<!-- * **Fixed Percentage**: All properties taxed at .9% assessed value -->
+<!-- - maybe MPE... show resulting taxes from the three different approaches -->
+<!-- * **Homeowner Exemption**: First xyz not taxed, then .9% assessed value -->
+<!-- - maybe different curves for different owners... -->
+<!-- * **Transitioning from regressivity**: Is a rapid change in assessment unfair? -->
+<!-- - some blend of regressive and R^2 over time -->
+<!-- ::: -->
+
+<!-- First example might prefer MPE, second might prefer R^2, third might prefer some blend of the regressive example and another. -->
 
 <!-- * fixed proportion -->
 <!-- * adjust proportion -->

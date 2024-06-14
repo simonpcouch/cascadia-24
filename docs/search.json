@@ -25,7 +25,7 @@
     "href": "index.html#proposal-performant-models-are-fair-3",
     "title": "",
     "section": "Proposal: Performant models are fair",
-    "text": "Proposal: Performant models are fair\nLet’s plot the errors:"
+    "text": "Proposal: Performant models are fair\nLet’s plot the errors:\n\n…let’s not forget those y-axis units."
   },
   {
     "objectID": "index.html#proposal-similar-percentage-error-is-most-fair",
@@ -53,7 +53,14 @@
     "href": "index.html#the-whole-system",
     "title": "",
     "section": "The whole system",
-    "text": "The whole system\nHow will these predictions even be used, though? Consider:\n\n\nFixed Percentage: All properties taxed at .9% assessed value\nHomeowner Exemption: First xyz not taxed, then .9% assessed value\nTransitioning from regressivity: Is a rapid change in assessment unfair?"
+    "text": "The whole system\nHow will these predictions even be used, though?"
+  },
+  {
+    "objectID": "index.html#the-whole-system-fixed-percentage",
+    "href": "index.html#the-whole-system-fixed-percentage",
+    "title": "",
+    "section": "The whole system: fixed percentage",
+    "text": "The whole system: fixed percentage\nAll properties taxed at .9% assessed value"
   },
   {
     "objectID": "index.html#the-hard-parts",
