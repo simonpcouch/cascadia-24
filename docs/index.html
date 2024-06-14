@@ -28,6 +28,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -327,192 +392,319 @@
 <section class="slide level2">
 
 
-<img data-src="figures/hero.png" alt="Title slide, reading &quot;Fair machine learning with tidymodels,&quot; my name, Simon P. Couch, and my affiliation, Posit PBC. To the right of the text are six hexagonal stickers showing packages from the tidymodels." class="r-stretch"></section>
-<section class="slide level2">
-
-
-<img data-src="index_files/figure-revealjs/plot-regressivity-vase-1.png" alt="ggplot2 line plot with the title 'Predicted versus Actual Vase Weight.' The subtitle reads 'Machine learning model predicts lighter vases are too heavy, and vice versa.'" width="480" class="r-stretch quarto-figure-center"><div class="fragment">
-<p>Is this fair?</p>
+<img data-src="figures/hero.png" alt="Title slide, reading &quot;Fairness in machine learning with tidymodels,&quot; my name, Simon P. Couch, and my affiliation, Posit PBC. To the right of the text are six hexagonal stickers showing packages from the tidymodels." class="r-stretch"></section>
+<section id="chatgpt-detectors" class="slide level2">
+<h2>ChatGPT detectors</h2>
+<p><img data-src="figures/successes_1.png" class="absolute" style="top: 100px; left: 20px; width: 600px; " alt="A screenshot of a web article with title &quot;Cheaters  beware: CHATGPT maker releases AI detection tool.&quot;"></p>
+<div class="fragment">
+<p><img data-src="figures/successes_2.png" class="absolute" style="top: 150px; left: 120px; width: 600px; " alt="A screenshot of a web article with title &quot;The AI detection arms race is on.&quot;"></p>
+</div>
+<div class="fragment">
+<p><img data-src="figures/successes_3.png" class="absolute" style="top: 200px; left: 220px; width: 600px; " alt="A screenshot of a web article with title &quot;ChatGPT detector catches AI-generated papers with unprecedented accuracy.&quot;"></p>
 </div>
 </section>
-<section class="slide level2">
-
-
-<img data-src="index_files/figure-revealjs/plot-regressivity-home-1.png" alt="The same exact line plot with the title and subtitle switched. They now read 'Predicted vs. Actual Home Value.' and 'Tax assessment model overvalues cheaper homes, and vice versa.'" width="480" class="r-stretch quarto-figure-center"><p>Is <em>this</em> fair?</p>
-<div class="footer">
-<p><a href="https://github.com/ccao-data/public/raw/main/presentations/2023-09-20_Posit-conf.pptx">github.com/ccao-data/public</a></p>
+<section id="chatgpt-detectors-1" class="slide level2">
+<h2>ChatGPT detectors😄</h2>
+<p><img data-src="figures/successes_1.png" class="absolute" style="top: 100px; left: 20px; width: 600px; "></p>
+<p><img data-src="figures/successes_2.png" class="absolute" style="top: 150px; left: 120px; width: 600px; "></p>
+<p><img data-src="figures/successes_3.png" class="absolute" style="top: 200px; left: 220px; width: 600px; "></p>
+</section>
+<section id="chatgpt-detectors-2" class="slide level2">
+<h2>ChatGPT detectors🤨</h2>
+<div class="fragment">
+<p><img data-src="figures/failures_1.png" class="absolute" style="top: 100px; left: 20px; width: 600px; " alt="A screenshot of a web article with title &quot;OpenAI abruptly shuts down ChatGPT plagiarism detector, and educators are worried.&quot;"></p>
+</div>
+<div class="fragment">
+<p><img data-src="figures/failures_2.png" class="absolute" style="top: 150px; left: 120px; width: 600px; " alt="A screenshot of a web article with title &quot;Professors are using ChatGPT detector tools to accuse students of cheating. But what if the software is wrong?&quot;"></p>
+</div>
+<div class="fragment">
+<p><img data-src="figures/failures_3.png" class="absolute" style="top: 200px; left: 220px; width: 600px; " alt="A screenshot of a web article with title &quot;AI detectors biased against non-native English writers.&quot;"></p>
 </div>
 </section>
 <section>
-<section id="context-matters" class="title-slide slide level1 center" data-background-color="#CA225E">
-<h1>Context matters</h1>
-<div class="fragment">
-<p><em>The same model parameters can result in behavior that feels totally benign when situated in one context and deeply unjust in another.</em></p>
-</div>
-</section>
-<section class="slide level2">
-
-<!-- This was actually quite a big deal---variants of this story have appeared in publications across the country in the last 10 years. One of a swath of examples where deployment of predictive models deepens inequities in our communities. -->
-
-<img data-src="figures/chicago_tribune.gif" style="display: block; margin-left: auto; margin-right: auto; width: 75%; box-shadow: 5px 5px 10px gray;" alt="" class="r-stretch"></section>
-<section class="slide level2">
-
-<!-- Borne of these examples is a diverse and active research community, aiming to answer the questions 1) What does it mean for a machine learning system to act fairly? and 2) how can we make systems act more fairly? -->
-<p><br><br><br> <img data-src="figures/scholar_search.png" style="display: block; margin-left: auto; margin-right: auto; width: 80%; box-shadow: 5px 5px 10px gray;" alt=""></p>
-</section>
-<section class="slide level2">
-
-<p><br><br><br> <img data-src="figures/scholar_search_emph.png" style="display: block; margin-left: auto; margin-right: auto; width: 80%; box-shadow: 5px 5px 10px gray;" alt=""></p>
-</section>
-<section class="slide level2">
-
-<!-- I work on a set of packages for machine learning in R... -->
-
-<img data-src="figures/packages.png" style="display: block; margin-left: auto; margin-right: auto; width: 50%;" alt="" class="r-stretch"></section>
-<section class="slide level2">
-
-<!-- We run an annual user survey... -->
-
-<img data-src="figures/survey_results.png" style="display: block; margin-left: auto; margin-right: auto; width: 40%; box-shadow: 5px 5px 10px gray;" alt="" class="r-stretch"></section></section>
-<section>
-<section id="defining-fairness" class="title-slide slide level1 center" data-background-color="#CA225E">
-<h1>Defining fairness</h1>
+<section id="applied-example-chatgpt-detectors" class="title-slide slide level1 center" data-background-color="#CA225E">
+<h1>Applied example: ChatGPT detectors🕵️</h1>
 
 </section>
-<section class="slide level2">
-
-
-<img data-src="index_files/figure-revealjs/plot-regressivity-home-2-1.png" alt="The same tax assessment plot from earlier." width="480" class="r-stretch quarto-figure-center"><div class="fragment">
-<p>Proposal: The most performant model is the most fair model.</p>
-</div>
-</section>
-<section id="proposal-performant-models-are-fair" class="slide level2">
-<h2>Proposal: Performant models are fair</h2>
-<div class="fragment">
-<p>Apply calibration to correct for correlated errors.</p>
-</div>
-</section>
-<section id="proposal-performant-models-are-fair-1" class="slide level2">
-<h2>Proposal: Performant models are fair</h2>
-
-<img data-src="index_files/figure-revealjs/plot-performant-home-1.png" alt="A dot plot of observed vs. predicted home values, except that the predicted values are now centered around the identity line (representing perfect predictions). Errors are i.i.d." width="480" class="r-stretch quarto-figure-center"><div class="fragment">
-<p>Perhaps this is better?</p>
-</div>
-</section>
-<section id="proposal-performant-models-are-fair-2" class="slide level2">
-<h2>Proposal: Performant models are fair</h2>
-<p>Let’s plot the errors:</p>
-
-<img data-src="index_files/figure-revealjs/plot-performant-residuals-1.png" alt="A plot of the distribution of errors in the previous plot: errors follow a similar distribution across the distribution of property values." width="480" class="r-stretch quarto-figure-center"><div class="fragment">
-<p>…let’s not forget those y-axis units.</p>
-</div>
-</section>
-<section id="proposal-performant-models-are-fair-3" class="slide level2">
-<h2>Proposal: Performant models are fair</h2>
-<p>Let’s plot the errors:</p>
-
-<img data-src="index_files/figure-revealjs/plot-performant-residuals-2-1.png" alt="The same plot as before, but the y axis has been labeled as tens of thousands of dollars." width="480" class="r-stretch quarto-figure-center"><p>…let’s not forget those y-axis units.</p>
-</section>
-<section id="proposal-similar-percentage-error-is-most-fair" class="slide level2">
-<h2>Proposal: Similar percentage error is most fair</h2>
-<!-- If we could, we'd just "shrink" the errors for those smaller property values. If we could have done that, though, we wouldn't need a model at all. So, artifically inflate errors on the upper end of the distribution by multiplying the prediction by a random factor that increases in magnitude with the predicted value. -->
-<div class="fragment">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="index_files/figure-revealjs/plot-mpe-home-1.png" width="480"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="defining-fairness-1" class="slide level2">
-<h2>Defining fairness</h2>
-<p>What was our process?</p>
+<section id="study-design" class="slide level2">
+<h2>Study design<sup>1</sup></h2>
 <div>
 <ul>
-<li class="fragment">Take some morally held belief about fairness</li>
-<li class="fragment">Find an evaluation metric that reflects that belief</li>
-</ul>
-</div>
-<div class="fragment">
-<p>The metrics, though, ultimately reflect the belief system that they arose from…</p>
-</div>
-</section>
-<section id="defining-fairness-2" class="slide level2">
-<h2>Defining fairness</h2>
-<p>What was our process?</p>
+<li class="fragment">Collect many human-written essays
 <ul>
-<li>Take some morally held belief about fairness</li>
-<li>Find an evaluation metric that reflects that belief</li>
+<li class="fragment">Some written by “native English writers”</li>
+<li class="fragment">Others by writers who do not write English “natively”</li>
+</ul></li>
+<li class="fragment">Generate many essays based on the same prompts</li>
+<li class="fragment">Pass all of the essays to marketed GPT detectors</li>
 </ul>
-<p>The metrics, though, ultimately reflect the belief system that they arose from, and are thus no more compatible than our morally held beliefs of what is fair.</p>
-</section></section>
-<section id="defining-fairness-3" class="title-slide slide level1 center" data-background-color="#CA225E">
-<h1>Defining fairness</h1>
-<p><br> <br></p>
+</div>
+<aside><ol class="aside-footnotes"><li id="fn1"><p><a href="https://doi.org/10.1016/j.patter.2023.100779">Weixin Liang, Mert Yuksekgonul, Yining Mao, Eric Wu, and James Zou. 2023. “GPT Detectors Are Biased Against Non-Native English Writers.” Patterns 4 (July): 100779.</a></p></li></ol></aside></section>
+<section id="getting-set-up" class="slide level2">
+<h2>Getting set up</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidymodels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
+<section id="getting-set-up-1" class="slide level2">
+<h2>Getting set up</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(detectors)</span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="fu">str</span>(detectors)</span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co">#&gt; tibble [6,185 × 9] (S3: tbl_df/tbl/data.frame)</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="co">#&gt;  $ kind       : Factor w/ 2 levels "AI","Human": 2 2 2 1 1 2 1 1 2 2 ...</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co">#&gt;  $ .pred_AI   : num [1:6185] 0.999994 0.828145 0.000214 0 0.001784 ...</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="co">#&gt;  $ .pred_class: Factor w/ 2 levels "AI","Human": 1 1 2 2 2 2 1 2 2 1 ...</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="co">#&gt;  $ detector   : chr [1:6185] "Sapling" "Crossplag" "Crossplag" "ZeroGPT" ...</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="co">#&gt;  $ native     : chr [1:6185] "No" "No" "Yes" NA ...</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="co">#&gt;  $ name       : chr [1:6185] "Real TOEFL" "Real TOEFL" "Real College Essays" "Fake CS224N - GPT3" ...</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="co">#&gt;  $ model      : chr [1:6185] "Human" "Human" "Human" "GPT3" ...</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="co">#&gt;  $ document_id: num [1:6185] 497 278 294 671 717 855 533 484 781 460 ...</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a><span class="co">#&gt;  $ prompt     : chr [1:6185] NA NA NA "Plain" ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!-- ## Exploratory analysis -->
+<!-- A perfect detector would predict that all essays written by AI were written by AI, the converse for humans, and zeroes elsewhere. -->
+<!-- ## Exploratory analysis -->
 
-<section id="defining-fairness-4" class="title-slide slide level1 center" data-background-color="#CA225E">
-<h1>Defining fairness</h1>
-<p><em>Definitions of fairness “are not mathematically or morally compatible in general.”</em><span class="math inline">\(^1\)</span></p>
-<div class="footer">
-<p><span style="font-size:150%; color:#ffffff;">Mitchell et al.&nbsp;2021</span></p>
-</div>
+<!-- Note that, for essays written by AI (`kind == "AI"`), the `native` variable isn't well-defined. Those entries thus match the numbers from the above table. -->
 </section>
+<section id="exploratory-analysis" class="slide level2">
+<h2>Exploratory analysis</h2>
+<!-- For essays written by `Human`s, a plot perhaps better demonstrates the disparity: -->
 
+<!-- Most of the essays written by non-native English writers are incorrectly classified as written by AI, while nearly all of the essays written by native English writers are correctly classified as written by humans. The same effect can be seen in the underlying probability distributions: -->
+<img data-src="index_files/figure-revealjs/plot-human-preds-1.png" width="960" class="r-stretch"></section>
+<section id="exploratory-analysis-1" class="slide level2">
+<h2>Exploratory analysis</h2>
+
+
+<!-- Again, note that *all of the plotted essays were written by humans*. An effective detector would thus predict a probability near zero for all of these observations. In this plot, we see that the evidence in our initial table showing these detectors weren't performing well didn't tell the whole story. They perform *quite* well for native English writers, actually. For non-native English writers, though, they perform terribly. -->
+<img data-src="index_files/figure-revealjs/plot-human-preds-by-native-1.png" width="960" class="r-stretch"></section>
+<section id="exploratory-analysis-2" class="slide level2">
+<h2>Exploratory analysis</h2>
+<!-- The above plots aggregate observations across several `detectors`, though. Do some GPT detectors classify essays written by non-native English writers just as well as those from native English writers? We can recreate the above plot to examine this question by faceting across `detectors`. -->
+
+<!-- Each column in this plot reflects roughly the same story as the plot that aggregates across detectors; the detectors work *very* well at correctly classifying real writing from native English writers, yet classify writing from non-native English writers incorrectly at least as often as they do so correctly. -->
+<!-- Question for reflection: Explore the source data further. Where are the essays written by native English writers collected from? How about non-native? What does our usage of "native writer" mean in this context, then? -->
+<img data-src="index_files/figure-revealjs/plot-human-preds-by-native-detector-1.png" width="960" class="r-stretch"></section></section>
 <section>
-<section id="section" class="title-slide slide level1 center" data-background-color="#CA225E">
-<h1></h1>
-<p><span style="font-size:140%"> …but there’s one more step </span></p>
+<section id="fairness-assessment-with-tidymodels" class="title-slide slide level1 center" data-background-color="#CA225E">
+<h1>Fairness assessment with tidymodels</h1>
+
+</section>
+<section id="fairness-assessment-with-tidymodels-1" class="slide level2">
+<h2>Fairness assessment with tidymodels</h2>
+<p>How does a GPT detector behave fairly?</p>
 <div class="fragment">
-<p><span style="font-size:300%"><strong>The whole system</strong></span></p>
-</div>
-</section>
-<section id="the-whole-system" class="slide level2">
-<h2>The whole system</h2>
-<p>How will these predictions even be used, though?</p>
-</section>
-<section id="the-whole-system-fixed-percentage" class="slide level2">
-<h2>The whole system: fixed percentage</h2>
-<p>All properties taxed at .9% assessed value</p>
-<!-- :::incremental -->
-<!-- * **Fixed Percentage**: All properties taxed at .9% assessed value -->
-<!-- - maybe MPE... show resulting taxes from the three different approaches -->
-<!-- * **Homeowner Exemption**: First xyz not taxed, then .9% assessed value -->
-<!-- - maybe different curves for different owners... -->
-<!-- * **Transitioning from regressivity**: Is a rapid change in assessment unfair? -->
-<!-- - some blend of regressive and R^2 over time -->
-<!-- ::: -->
-<!-- First example might prefer MPE, second might prefer R^2, third might prefer some blend of the regressive example and another. -->
-<!-- * fixed proportion -->
-<!-- * adjust proportion -->
-<!-- * raise proportion as value grows -->
-<!-- * cut off at certain -->
-</section></section>
-<section>
-<section id="the-whole-system-1" class="title-slide slide level1 center" data-background-color="#CA225E">
-<h1>The whole system</h1>
-<div class="fragment">
-<p><em>Mitigating unfairness requires a focus on more than just the model.</em></p>
-</div>
-</section>
-<section id="the-hard-parts" class="slide level2">
-<h2>The hard parts</h2>
-<div>
+<p>Three perspectives:</p>
 <ul>
-<li class="fragment">Understanding what fairness means to you (or stakeholders) in a problem context</li>
-<li class="fragment">Choosing a mathematical measure of fairness that speaks to that meaning</li>
-<li class="fragment">Situating the resulting measure in the whole system</li>
+<li>Effective detection, group-blind</li>
+<li>Fair prediction on human-written essays</li>
+<li>Balancing both notions of fairness</li>
 </ul>
 </div>
-</section></section>
-<section>
-<section id="section-1" class="title-slide slide level1 center" data-background-color="#CA225E">
-<h1></h1>
-<p><span style="font-size:170%">Choose tools that support thinking about the hard parts.</span></p>
+</section>
+<section id="effective-detection-group-blind" class="slide level2">
+<h2>Effective detection, group-blind</h2>
+<p><strong>Position</strong>: it is unfair to pass on an essay written by a GPT as one’s own work.</p>
+<div class="fragment">
+<p><strong>Stakeholders</strong>:</p>
+<ul>
+<li>A detector author</li>
+<li>A student</li>
+<li>An instructor</li>
+</ul>
+<!-- The most fair detection model is one that reliably differentiates between essays written by humans or generated by GPTs, regardless of the problem context. From this perspective, the most fair model is the model that detects GPT-generated essays most effectively; it is unfair to pass on an essay written by a GPT as one's own work. When analyzing this data, a stakeholder with this perspective would ignore the `native` variable in their analysis. -->
+<!--   A **detector author** may take on such a perspective, since their model may be applied in a diverse set of unknown contexts. -->
+<!--   A **student** who submits an essay of their own writing may feel it is unfair to have their work compared to work generated by GPTs. -->
+<!--   An **instructor** of a course tasked with evaluating essays may feel it is unfair to such students to compare those students' work to GPT-generated essays. Additionally, this instructor may teach a course to only native English writers or only non-native English writers. -->
+</div>
+</section>
+<section id="effective-detection-group-blind-1" class="slide level2">
+<h2>Effective detection, group-blind</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>detectors <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">group_by</span>(detector) <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>  <span class="fu">roc_auc</span>(<span class="at">truth =</span> kind, .pred_AI) <span class="sc">%&gt;%</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(.estimate)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="co">#&gt; # A tibble: 3 × 4</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="co">#&gt;   detector      .metric .estimator .estimate</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="co">#&gt; 1 GPTZero       roc_auc binary         0.750</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="co">#&gt; 2 OriginalityAI roc_auc binary         0.682</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="co">#&gt; 3 HFOpenAI      roc_auc binary         0.614</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>This code makes no mention of the <code>native</code> variable.</p>
+</div>
+</div>
+</div>
+<!-- From this perspective, the models with the highest `roc_auc()` estimates are the most fair. -->
+<!-- To learn more about how the yardstick package handles groups in data, see the ["Grouping behavior in yardstick" vignette](https://yardstick.tidymodels.org/dev/articles/grouping.html). -->
+<!-- The fairness assessment for this stakeholder doesn't need any of the functionality newly introduced in yardstick 1.3.0. An analysis that reconciles the role of the `native` variable in these models' predictions will, though. -->
+</div>
+</section>
+<section id="fair-prediction-on-human-written-essays" class="slide level2">
+<h2>Fair prediction on human-written essays</h2>
+<p><strong>Position</strong>: it is unfair to disproportionately classify human-written text as AI-generated</p>
+<div class="fragment">
+<p><strong>Stakeholders</strong>:</p>
+<ul>
+<li>Another student</li>
+<li>Another instructor</li>
+</ul>
+<!-- Now, consider that our only priority was to correctly classify human-written text as human-written and incorrectly classify human-written text as generated by AI at the same rate for both native English writers and non-native English writers, ignoring predictions from essays generated by AI. -->
+<!-- -   Another **student** whose work is evaluated by a detector model may take on such a perspective. This student could be a native English writer who does not want other students to be subjected to undue harm or a non-native English writer concerned with their own writing being incorrectly classified as GPT-generated. -->
+<!-- -   Another **instructor** of a course may feel it is unfair to disproportionately classify writing from students who are non-native English writers as GPT-generated, regardless of how effectively the model detects GPT-generated essays. -->
+</div>
+</section>
+<section id="fair-prediction-on-human-written-essays-1" class="slide level2">
+<h2>Fair prediction on human-written essays</h2>
+<p>The <em>fairness metric</em> equal opportunity quantifies this definition of fairness.</p>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>equal_opportunity_by_native <span class="ot">&lt;-</span> <span class="fu">equal_opportunity</span>(<span class="at">by =</span> native)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p><code>equal_opportunity()</code> is one of several <a href="https://yardstick.tidymodels.org/dev/reference/new_groupwise_metric.html">fairness metrics</a> in the developmental version of yardstick.</p>
+</div>
+</div>
+</div>
+<!-- The `equal_opportunity()` metric enables us to quantify the extent of this interpretation of unfairness. Equal opportunity is satisfied when a model's predictions have the same true positive and false negative rates across protected groups; a model predicts more fairly if it's equally likely to predict a positive outcome for each group. -->
+<!-- In this example, a GPT detector satisfies equal opportunity when the detector correctly classifies human-written text as human-written and incorrectly classifies human-written text as generated by AI at the same rate for both native English writers and non-native English writers. -->
+<!-- TODO: print out the following function once the metric print method is merged into yardstick -->
+</div>
+</section>
+<section id="fair-prediction-on-human-written-essays-2" class="slide level2">
+<h2>Fair prediction on human-written essays</h2>
+<!-- The function `equal_opportunity_by_native()` is a yardstick metric function like any other, except it knows to temporarily group by and summarize across a data-column called `native`. Applying it: -->
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>detectors <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">filter</span>(kind <span class="sc">==</span> <span class="st">"Human"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">group_by</span>(detector) <span class="sc">%&gt;%</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>  <span class="fu">equal_opportunity_by_native</span>(</span>
+<span id="cb5-5"><a href="#cb5-5"></a>    <span class="at">truth =</span> kind, <span class="at">estimate =</span> .pred_class, <span class="at">event_level =</span> <span class="st">"second"</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a>  <span class="fu">arrange</span>(.estimate) <span class="sc">%&gt;%</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="co">#&gt; # A tibble: 3 × 5</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="co">#&gt;   detector  .metric           .by    .estimator .estimate</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;             &lt;chr&gt;  &lt;chr&gt;          &lt;dbl&gt;</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="co">#&gt; 1 Crossplag equal_opportunity native binary         0.464</span></span>
+<span id="cb5-13"><a href="#cb5-13"></a><span class="co">#&gt; 2 ZeroGPT   equal_opportunity native binary         0.477</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a><span class="co">#&gt; 3 GPTZero   equal_opportunity native binary         0.510</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<p>The detectors with estimates closest to zero are most fair, by this definition of fairness.</p>
+<!-- Given this set of moral values, our analysis would offer a different set of recommendations for which detector to use. -->
+</div>
+</section>
+<section id="balancing-two-notions-of-fairness" class="slide level2">
+<h2>Balancing two notions of fairness</h2>
+<p><strong>Position</strong>: it is unfair to pass on an essay written by a GPT as one’s own work <strong>and</strong> it is unfair to disportionately classify human-written text as AI-generated.</p>
+<div class="fragment">
+<p><strong>Stakeholders</strong>:</p>
+<ul>
+<li>Another instructor</li>
+</ul>
+<!-- -   Another **instructor** of a course may feel it is unfair to disproportionately classify human-written work from non-native English writers as GPT-generated, but still values detection of GPT-generated content. -->
+</div>
+</section>
+<section id="balancing-two-notions-of-fairness-1" class="slide level2">
+<h2>Balancing two notions of fairness</h2>
+<p>Workflow:</p>
+<ol type="1">
+<li>Ensure that a model detects GPT-generated work with some threshold of performance, and then</li>
+<li>Choose the model among that set that predicts most fairly on human-written essays</li>
+</ol>
+<div class="fragment">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Question</strong></p>
+</div>
+<div class="callout-content">
+<p>By this workflow, which of the first definitions of fairness is encoded as more important?</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="balancing-two-notions-of-fairness-2" class="slide level2">
+<h2>Balancing two notions of fairness</h2>
+<!-- This reflects the belief that it is more unfair to fail to detect GPT-generated work than it is to disproportionately classify human-written work from non-native English writers as GPT-generated, as it is possible that the model that most proportionately classifies human-written work from native and non-native English writers as GPT-generated is not among the recommended models. -->
+<p>Find the most performant detectors:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>performant_detectors <span class="ot">&lt;-</span> </span>
+<span id="cb6-2"><a href="#cb6-2"></a>  detectors <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">group_by</span>(detector) <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">roc_auc</span>(<span class="at">truth =</span> kind, .pred_AI) <span class="sc">%&gt;%</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(.estimate)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="balancing-two-notions-of-fairness-3" class="slide level2">
+<h2>Balancing two notions of fairness</h2>
+<p>Among the most performant detectors, choose the model that predicts most fairly on human-written essays:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>detectors <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">filter</span>(kind <span class="sc">==</span> <span class="st">"Human"</span>, detector <span class="sc">%in%</span> performant_detectors<span class="sc">$</span>detector) <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">group_by</span>(detector) <span class="sc">%&gt;%</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>  <span class="fu">equal_opportunity_by_native</span>(</span>
+<span id="cb7-5"><a href="#cb7-5"></a>    <span class="at">truth =</span> kind, </span>
+<span id="cb7-6"><a href="#cb7-6"></a>    <span class="at">estimate =</span> .pred_class, </span>
+<span id="cb7-7"><a href="#cb7-7"></a>    <span class="at">event_level =</span> <span class="st">"second"</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a>  <span class="fu">arrange</span>(.estimate)</span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="co">#&gt; # A tibble: 3 × 5</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="co">#&gt;   detector      .metric           .by    .estimator .estimate</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a><span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;             &lt;chr&gt;  &lt;chr&gt;          &lt;dbl&gt;</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a><span class="co">#&gt; 1 GPTZero       equal_opportunity native binary         0.510</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a><span class="co">#&gt; 2 HFOpenAI      equal_opportunity native binary         0.549</span></span>
+<span id="cb7-15"><a href="#cb7-15"></a><span class="co">#&gt; 3 OriginalityAI equal_opportunity native binary         0.709</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="balancing-two-notions-of-fairness-4" class="slide level2">
+<h2>Balancing two notions of fairness</h2>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Take-home📝</strong></p>
+</div>
+<div class="callout-content">
+<p>Switch the order of these steps. Does this result in a different set of recommended models?</p>
+</div>
+</div>
+</div>
+<!-- We could also reverse the process, reflecting the belief that it is more unfair to disproportionately classify human-written work from non-native English writers as GPT-generated than it is to pass on output from GPTs as one's own work. We first set a threshold based on `equal_opportunity()`, then choose the most performant model by `roc_auc()`: -->
+<!-- In this example, changing the prioritization of the criteria results in a different set of recommended models. -->
 </section>
 <section id="resources" class="slide level2">
 <h2>Resources</h2>
@@ -567,9 +759,10 @@
 <p></p>
 
 <div class="footer footer-default">
-<p><span style="color:#CA225E;">github.com/simonpcouch/cascadia-24</span></p>
+
 </div>
 </span></section></section>
+
     </div>
   </div>
 
