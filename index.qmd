@@ -3,7 +3,6 @@ title: ""
 format: 
   revealjs:
     theme: [default, tidymodels.scss]
-    footer: '<span style="color:#CA225E;">github.com/simonpcouch/cascadia-24</span>'
 editor: source
 knitr:
   opts_chunk: 
@@ -22,370 +21,353 @@ library(tidyverse)
 theme_set(theme_bw(base_size = 14) + theme(legend.position = "top"))
 ```
 
-![](figures/hero.png){fig-alt='Title slide, reading "Fair machine learning with tidymodels," my name, Simon P. Couch, and my affiliation, Posit PBC. To the right of the text are six hexagonal stickers showing packages from the tidymodels.'}
+![](figures/hero.png){fig-alt='Title slide, reading "Fairness in machine learning with tidymodels," my name, Simon P. Couch, and my affiliation, Posit PBC. To the right of the text are six hexagonal stickers showing packages from the tidymodels.'}
 
----
 
-```{r}
-#| label: "plot-regressivity"
-#| echo: false
-set.seed(1)
-regressivity <-
-  tibble(
-    Truth = seq(-.7, .7, length.out = 100),
-    Prediction = Truth^3 / 1.2
-  ) %>%
-  mutate(
-    Truth = (Truth + .9) * 300,
-    Prediction = (Prediction + .9) * 300,
-    Prediction = Prediction + rnorm(nrow(.), 0, 12)
-  )
+## ChatGPT detectors
 
-regressivity_plot <- 
-  ggplot(regressivity) +
-  geom_point(aes(x = Truth, y = Prediction), color = "#CA225E") +
-  geom_line(aes(x = Truth, y = Truth), linetype = "dashed") +
-  tune::coord_obs_pred() +
-  theme(plot.subtitle = element_text(face="italic"))
-```
-
-```{r}
-#| label: "plot-regressivity-vase"
-#| echo: false
-#| fig-width: 5
-#| fig-align: "center"
-#| fig-alt: "ggplot2 line plot with the title 'Predicted versus Actual Vase Weight.' The subtitle reads 'Machine learning model predicts lighter vases are too heavy, and vice versa.'"
-regressivity_plot +
-  labs(
-    title = "Predicted vs. Actual Vase Weight",
-    subtitle = "Machine learning model predicts lighter\nvases are too heavy, and vice versa."
-  ) +
-  scale_x_continuous(labels = ~paste0("\u00a0", as.character(.x), "g")) +
-  scale_y_continuous(labels = ~paste0("\u00a0", as.character(.x), "g"))
-```
+![](figures/successes_1.png){.absolute top="100" left="20" width="600" fig-alt='A screenshot of a web article with title "Cheaters  beware: CHATGPT maker releases AI detection tool."'}
 
 . . .
 
-Is this fair?
-
----
-
-```{r}
-#| label: "plot-regressivity-home"
-#| echo: false
-#| fig-width: 5
-#| fig-align: "center"
-#| fig-alt: "The same exact line plot with the title and subtitle switched. They now read 'Predicted vs. Actual Home Value.' and 'Tax assessment model overvalues cheaper homes, and vice versa.'"
-regressivity_plot +
-  labs(
-    title = "Predicted vs. Actual Home Value",
-    subtitle = "Tax assessment model overvalues\ncheaper homes, and vice versa."
-  ) +
-  scale_x_continuous(labels = ~paste0("$", as.character(.x), "k")) +
-  scale_y_continuous(labels = ~paste0("$", as.character(.x), "k"))
-```
-
-Is _this_ fair?
-
-:::footer
-[github.com/ccao-data/public](https://github.com/ccao-data/public/raw/main/presentations/2023-09-20_Posit-conf.pptx)
-:::
-
-# Context matters {background-color="#CA225E"}
+![](figures/successes_2.png){.absolute top="150" left="120" width="600" fig-alt='A screenshot of a web article with title "The AI detection arms race is on."'}
 
 . . .
 
-_The same model parameters can result in behavior that feels totally benign when situated in one context and deeply unjust in another._
+![](figures/successes_3.png){.absolute top="200" left="220" width="600" fig-alt='A screenshot of a web article with title "ChatGPT detector catches AI-generated papers with unprecedented accuracy."'}
 
----
+## ChatGPT detectors😄
 
-<!-- This was actually quite a big deal---variants of this story have appeared in publications across the country in the last 10 years. One of a swath of examples where deployment of predictive models deepens inequities in our communities. -->
+![](figures/successes_1.png){.absolute top="100" left="20" width="600"}
 
-![](figures/chicago_tribune.gif){fig-alt='' style="display: block; margin-left: auto; margin-right: auto; width: 75%; box-shadow: 5px 5px 10px gray;"}
+![](figures/successes_2.png){.absolute top="150" left="120" width="600"}
 
----
+![](figures/successes_3.png){.absolute top="200" left="220" width="600"}
 
-<!-- Borne of these examples is a diverse and active research community, aiming to answer the questions 1) What does it mean for a machine learning system to act fairly? and 2) how can we make systems act more fairly? -->
-
-<br><br><br>
-![](figures/scholar_search.png){fig-alt='' style="display: block; margin-left: auto; margin-right: auto; width: 80%; box-shadow: 5px 5px 10px gray;"}
-
----
-
-<br><br><br>
-![](figures/scholar_search_emph.png){fig-alt='' style="display: block; margin-left: auto; margin-right: auto; width: 80%; box-shadow: 5px 5px 10px gray;"}
-
----
-
-<!-- I work on a set of packages for machine learning in R... -->
-
-![](figures/packages.png){fig-alt=''   style="display: block; margin-left: auto; margin-right: auto; width: 50%;"}
-
----
-
-<!-- We run an annual user survey... -->
-
-![](figures/survey_results.png){fig-alt='' style="display: block; margin-left: auto; margin-right: auto; width: 40%; box-shadow: 5px 5px 10px gray;"}
-
-# Defining fairness {background-color="#CA225E"}
-
----
-
-```{r}
-#| label: "plot-regressivity-home-2"
-#| echo: false
-#| fig-width: 5
-#| fig-align: "center"
-#| fig-alt: "The same tax assessment plot from earlier."
-regressivity_plot +
-  labs(
-    title = "Predicted vs. Actual Home Value",
-    subtitle = "Tax assessment model overvalues\ncheaper homes, and vice versa.",
-    x = "Property Value",
-    y = "Predicted Property Value"
-  ) +
-  scale_x_continuous(labels = ~paste0("$", as.character(.x), "k")) +
-  scale_y_continuous(labels = ~paste0("$", as.character(.x), "k"))
-```
+## ChatGPT detectors🤨
 
 . . .
 
-Proposal: The most performant model is the most fair model.
-
-## Proposal: Performant models are fair
+![](figures/failures_1.png){.absolute top="100" left="20" width="600" fig-alt='A screenshot of a web article with title "OpenAI abruptly shuts down ChatGPT plagiarism detector, and educators are worried."'}
 
 . . .
 
-Apply calibration to correct for correlated errors.
-
-## Proposal: Performant models are fair
-
-```{r}
-#| label: "plot-performant-home"
-#| echo: false
-#| fig-width: 5
-#| fig-align: "center"
-#| fig-alt: "A dot plot of observed vs. predicted home values, except that the predicted values are now centered around the identity line (representing perfect predictions). Errors are i.i.d."
-set.seed(1)
-iid <-
-  tibble(
-    Truth = seq(-.7, .7, length.out = 100),
-    Prediction = Truth
-  ) %>%
-  mutate(
-    Truth = (Truth + .9) * 300,
-    Prediction = (Prediction + .9) * 300,
-    Prediction = Prediction + rnorm(nrow(.), 0, 25)
-  )
-
-iid_plot <- iid %>%
-  ggplot() +
-  geom_point(aes(x = Truth, y = Prediction), color = "#CA225E") +
-  geom_line(aes(x = Truth, y = Truth), linetype = "dashed") +
-  tune::coord_obs_pred() +
-  theme(plot.subtitle = element_text(face="italic")) +
-  labs(
-    subtitle = "Tax assessment model predicts with a \nhigh R-squared, errors i.i.d.",
-    x = "Property Value",
-    y = "Predicted Property Value"
-  ) +
-  scale_x_continuous(labels = ~paste0("$", as.character(.x), "k")) +
-  scale_y_continuous(labels = ~paste0("$", as.character(.x), "k"))
-
-iid_plot
-```
+![](figures/failures_2.png){.absolute top="150" left="120" width="600" fig-alt='A screenshot of a web article with title "Professors are using ChatGPT detector tools to accuse students of cheating. But what if the software is wrong?"'}
 
 . . .
 
+![](figures/failures_3.png){.absolute top="200" left="220" width="600" fig-alt='A screenshot of a web article with title "AI detectors biased against non-native English writers."'}
 
-Perhaps this is better?
+# Applied example: ChatGPT detectors🕵️{background-color="#CA225E"}
 
-## Proposal: Performant models are fair
-
-Let's plot the errors:
-
-```{r}
-#| label: "plot-performant-residuals"
-#| echo: false
-#| fig-width: 5
-#| fig-align: "center"
-#| fig-alt: "A plot of the distribution of errors in the previous plot: errors follow a similar distribution across the distribution of property values."
-residual_plot <- iid %>%
-  mutate(Residuals = Truth - Prediction) %>%
-  ggplot() +
-  aes(x = Truth, y = Residuals) +
-  labs(x = "Property Value", "Residual (True Value Minus Predicted)") +
-  geom_point(color = "#CA225E") +
-  scale_x_continuous(labels = ~paste0("$", as.character(.x), "k"))
-
-residual_plot
-```
-. . .
-
-...let's not forget those y-axis units.
-
-## Proposal: Performant models are fair
-
-Let's plot the errors:
-
-```{r}
-#| label: "plot-performant-residuals-2"
-#| echo: false
-#| fig-width: 5
-#| fig-align: "center"
-#| fig-alt: "The same plot as before, but the y axis has been labeled as tens of thousands of dollars."
-residual_plot +
-  scale_y_continuous(labels = ~paste0("$", as.character(.x), "k"))
-```
-
-...let's not forget those y-axis units.
-
-## Proposal: Similar percentage error is most fair
-
-<!-- If we could, we'd just "shrink" the errors for those smaller property values. If we could have done that, though, we wouldn't need a model at all. So, artifically inflate errors on the upper end of the distribution by multiplying the prediction by a random factor that increases in magnitude with the predicted value. -->
-
-. . .
-
-```{r}
-#| label: "plot-mpe-home"
-#| echo: false
-#| fig-width: 5
-#| fig-align: "center"
-#| fig-alt: ""
-set.seed(1)
-mpe <-
-  tibble(
-    Truth = seq(-.7, .7, length.out = 100),
-    Prediction = Truth
-  ) %>%
-  mutate(
-    Truth = (Truth + .9) * 300,
-    Prediction = (Prediction + .9) * 300
-  ) %>%
-  rowwise() %>%
-  mutate(
-    Prediction = Prediction + rnorm(1, 0, Prediction / 5)
-  )
-
-mpe_plot <- mpe %>%
-  ggplot() +
-  geom_point(aes(x = Truth, y = Prediction), color = "#CA225E") +
-  geom_line(aes(x = Truth, y = Truth), linetype = "dashed") +
-  tune::coord_obs_pred() +
-  theme(plot.subtitle = element_text(face="italic")) +
-  labs(
-    subtitle = "Tax assessment model that predicts with \nsimilar percentage error across distribution.",
-    x = "Property Value",
-    y = "Predicted Property Value"
-  ) +
-  scale_x_continuous(labels = ~paste0("$", as.character(.x), "k")) +
-  scale_y_continuous(labels = ~paste0("$", as.character(.x), "k"))
-
-mpe_plot
-```
-
-----
-
-## Defining fairness
-
-What was our process?
+## Study design^[[Weixin Liang, Mert Yuksekgonul, Yining Mao, Eric Wu, and James Zou. 2023. "GPT Detectors Are Biased Against Non-Native English Writers." Patterns 4 (July): 100779.](https://doi.org/10.1016/j.patter.2023.100779)]
 
 :::incremental
-
-* Take some morally held belief about fairness
-* Find an evaluation metric that reflects that belief
-
+* Collect many human-written essays
+     - Some written by "native English writers"
+     - Others by writers who do not write English "natively"
+* Generate many essays based on the same prompts
+* Pass all of the essays to marketed GPT detectors
 :::
 
-. . .
 
-The metrics, though, ultimately reflect the belief system that they arose from...
+## Getting set up
 
-## Defining fairness
-
-What was our process?
-
-* Take some morally held belief about fairness
-* Find an evaluation metric that reflects that belief
-
-The metrics, though, ultimately reflect the belief system that they arose from, and are thus no more compatible than our morally held beliefs of what is fair.
-
-# Defining fairness {background-color="#CA225E"}
-
-<br>
-<br>
-
-# Defining fairness {background-color="#CA225E"}
-
-_Definitions of fairness "are not mathematically or morally compatible in general."_$^1$
-
-:::footer
-
-<span style="font-size:150%; color:#ffffff;">Mitchell et al. 2021</span>
-:::
-
-# {background-color="#CA225E"}
-
-<span style="font-size:140%"> ...but there's one more step </span>
-
-. . .
-
-<span style="font-size:300%">**The whole system**</span> 
-
-----
-
-## The whole system
-
-How will these predictions even be used, though?
-
-## The whole system: fixed percentage
-
-All properties taxed at .9% assessed value
-
-```{r}
-
+```{r load-tidymodels}
+library(tidymodels)
 ```
 
+## Getting set up
 
-<!-- :::incremental -->
+```{r load-detectors}
+library(detectors)
 
-<!-- * **Fixed Percentage**: All properties taxed at .9% assessed value -->
-<!-- - maybe MPE... show resulting taxes from the three different approaches -->
-<!-- * **Homeowner Exemption**: First xyz not taxed, then .9% assessed value -->
-<!-- - maybe different curves for different owners... -->
-<!-- * **Transitioning from regressivity**: Is a rapid change in assessment unfair? -->
-<!-- - some blend of regressive and R^2 over time -->
-<!-- ::: -->
+str(detectors)
+```
 
-<!-- First example might prefer MPE, second might prefer R^2, third might prefer some blend of the regressive example and another. -->
+<!-- ## Exploratory analysis -->
 
-<!-- * fixed proportion -->
-<!-- * adjust proportion -->
-<!-- * raise proportion as value grows -->
-<!-- * cut off at certain -->
+```{r count-kind-pred}
+#| include: false
+detectors %>%
+  count(kind, .pred_class)
+```
+
+<!-- A perfect detector would predict that all essays written by AI were written by AI, the converse for humans, and zeroes elsewhere. -->
+
+<!-- ## Exploratory analysis -->
+
+```{r count-native-kind-pred}
+#| include: false
+detectors %>% 
+  count(native, kind, .pred_class)
+```
+
+<!-- Note that, for essays written by AI (`kind == "AI"`), the `native` variable isn't well-defined. Those entries thus match the numbers from the above table. -->
+
+## Exploratory analysis
+
+<!-- For essays written by `Human`s, a plot perhaps better demonstrates the disparity: -->
+
+```{r plot-human-preds}
+#| echo: false
+detectors %>% 
+  filter(!is.na(native)) %>%
+  ggplot(aes(x = native, fill = .pred_class)) +
+  geom_bar() +
+  labs(x = "Native English Writer", fill = "Predicted Class")
+```
+
+<!-- Most of the essays written by non-native English writers are incorrectly classified as written by AI, while nearly all of the essays written by native English writers are correctly classified as written by humans. The same effect can be seen in the underlying probability distributions: -->
+
+## Exploratory analysis
+
+```{r plot-human-preds-by-native}
+#| echo: false
+detectors %>%
+  filter(!is.na(native)) %>%
+  mutate(native = case_when(native == "Yes" ~ "Native English writer",
+                            native == "No" ~ "Non-native English writer")) %>%
+  ggplot(aes(.pred_AI, fill = native)) +
+  geom_histogram(bins = 30, show.legend = FALSE) +
+  facet_wrap(vars(native), scales = "free_y", nrow = 2) +
+  labs(x = "Predicted Probability That Essay Was Written by AI")
+```
+
+<!-- Again, note that *all of the plotted essays were written by humans*. An effective detector would thus predict a probability near zero for all of these observations. In this plot, we see that the evidence in our initial table showing these detectors weren't performing well didn't tell the whole story. They perform *quite* well for native English writers, actually. For non-native English writers, though, they perform terribly. -->
+
+## Exploratory analysis
+
+<!-- The above plots aggregate observations across several `detectors`, though. Do some GPT detectors classify essays written by non-native English writers just as well as those from native English writers? We can recreate the above plot to examine this question by faceting across `detectors`. -->
+
+```{r plot-human-preds-by-native-detector}
+#| echo: false
+detectors %>%
+  filter(!is.na(native)) %>%
+  mutate(native = case_when(native == "Yes" ~ "Native English writer",
+                            native == "No" ~ "Non-native English writer")) %>%
+  ggplot(aes(.pred_AI, fill = native)) +
+  geom_histogram(bins = 30) +
+  facet_grid(vars(native), vars(detector), scales = "free_y") +
+  labs(x = "Predicted Probability That Essay Was Written by AI") +
+  scale_x_continuous(breaks = c(0, 1)) +
+  theme(legend.position = "none")
+```
+
+<!-- Each column in this plot reflects roughly the same story as the plot that aggregates across detectors; the detectors work *very* well at correctly classifying real writing from native English writers, yet classify writing from non-native English writers incorrectly at least as often as they do so correctly. -->
+
+<!-- Question for reflection: Explore the source data further. Where are the essays written by native English writers collected from? How about non-native? What does our usage of "native writer" mean in this context, then? -->
+
+# Fairness assessment with tidymodels {background-color="#CA225E"}
 
 
-# The whole system {background-color="#CA225E"}
+## Fairness assessment with tidymodels
+
+How does a GPT detector behave fairly?
 
 . . .
 
-_Mitigating unfairness requires a focus on more than just the model._
+Three perspectives:
 
-----
+* Effective detection, group-blind
+* Fair prediction on human-written essays
+* Balancing both notions of fairness
 
-## The hard parts
+## Effective detection, group-blind
 
-:::incremental
+**Position**: it is unfair to pass on an essay written by a GPT as one's own work.
 
-* Understanding what fairness means to you (or stakeholders) in a problem context
-* Choosing a mathematical measure of fairness that speaks to that meaning
-* Situating the resulting measure in the whole system
+. . .
 
+**Stakeholders**:
+
+* A detector author
+* A student
+* An instructor
+
+<!-- The most fair detection model is one that reliably differentiates between essays written by humans or generated by GPTs, regardless of the problem context. From this perspective, the most fair model is the model that detects GPT-generated essays most effectively; it is unfair to pass on an essay written by a GPT as one's own work. When analyzing this data, a stakeholder with this perspective would ignore the `native` variable in their analysis. -->
+
+<!--   A **detector author** may take on such a perspective, since their model may be applied in a diverse set of unknown contexts. -->
+
+<!--   A **student** who submits an essay of their own writing may feel it is unfair to have their work compared to work generated by GPTs. -->
+
+<!--   An **instructor** of a course tasked with evaluating essays may feel it is unfair to such students to compare those students' work to GPT-generated essays. Additionally, this instructor may teach a course to only native English writers or only non-native English writers. -->
+
+## Effective detection, group-blind
+
+```{r roc-aucs}
+detectors %>%
+  group_by(detector) %>%
+  roc_auc(truth = kind, .pred_AI) %>%
+  arrange(desc(.estimate)) %>%
+  head(3)
+```
+
+. . .
+
+:::callout-note
+This code makes no mention of the `native` variable.
 :::
 
-# {background-color="#CA225E"}
+<!-- From this perspective, the models with the highest `roc_auc()` estimates are the most fair. -->
 
-<span style="font-size:170%">Choose tools that support thinking about the hard parts.</span> 
+<!-- To learn more about how the yardstick package handles groups in data, see the ["Grouping behavior in yardstick" vignette](https://yardstick.tidymodels.org/dev/articles/grouping.html). -->
+
+<!-- The fairness assessment for this stakeholder doesn't need any of the functionality newly introduced in yardstick 1.3.0. An analysis that reconciles the role of the `native` variable in these models' predictions will, though. -->
+
+## Fair prediction on human-written essays
+
+**Position**: it is unfair to disproportionately classify human-written text as AI-generated
+
+. . .
+
+**Stakeholders**:
+
+* Another student
+* Another instructor
+
+
+
+<!-- Now, consider that our only priority was to correctly classify human-written text as human-written and incorrectly classify human-written text as generated by AI at the same rate for both native English writers and non-native English writers, ignoring predictions from essays generated by AI. -->
+
+<!-- -   Another **student** whose work is evaluated by a detector model may take on such a perspective. This student could be a native English writer who does not want other students to be subjected to undue harm or a non-native English writer concerned with their own writing being incorrectly classified as GPT-generated. -->
+
+<!-- -   Another **instructor** of a course may feel it is unfair to disproportionately classify writing from students who are non-native English writers as GPT-generated, regardless of how effectively the model detects GPT-generated essays. -->
+
+## Fair prediction on human-written essays
+
+The _fairness metric_ equal opportunity quantifies this definition of fairness.
+
+. . .
+
+```{r ep-opp-native}
+equal_opportunity_by_native <- equal_opportunity(by = native)
+```
+
+. . . 
+
+::: callout-note
+`equal_opportunity()` is one of several [fairness metrics](https://yardstick.tidymodels.org/dev/reference/new_groupwise_metric.html) in the developmental version of yardstick.
+:::
+
+
+<!-- The `equal_opportunity()` metric enables us to quantify the extent of this interpretation of unfairness. Equal opportunity is satisfied when a model's predictions have the same true positive and false negative rates across protected groups; a model predicts more fairly if it's equally likely to predict a positive outcome for each group. -->
+
+<!-- In this example, a GPT detector satisfies equal opportunity when the detector correctly classifies human-written text as human-written and incorrectly classifies human-written text as generated by AI at the same rate for both native English writers and non-native English writers. -->
+
+<!-- TODO: print out the following function once the metric print method is merged into yardstick -->
+
+## Fair prediction on human-written essays
+
+<!-- The function `equal_opportunity_by_native()` is a yardstick metric function like any other, except it knows to temporarily group by and summarize across a data-column called `native`. Applying it: -->
+
+```{r eq-opp}
+detectors %>%
+  filter(kind == "Human") %>%
+  group_by(detector) %>%
+  equal_opportunity_by_native(
+    truth = kind, estimate = .pred_class, event_level = "second"
+  ) %>%
+  arrange(.estimate) %>%
+  head(3)
+```
+
+. . .
+
+The detectors with estimates closest to zero are most fair, by this definition of fairness.
+
+<!-- Given this set of moral values, our analysis would offer a different set of recommendations for which detector to use. -->
+
+## Balancing two notions of fairness
+
+**Position**: it is unfair to pass on an essay written by a GPT as one's own work **and** it is unfair to disportionately classify human-written text as AI-generated.
+
+. . .
+
+**Stakeholders**:
+
+* Another instructor
+
+<!-- -   Another **instructor** of a course may feel it is unfair to disproportionately classify human-written work from non-native English writers as GPT-generated, but still values detection of GPT-generated content. -->
+
+## Balancing two notions of fairness
+
+Workflow:
+
+1. Ensure that a model detects GPT-generated work with some threshold of performance, and then
+2. Choose the model among that set that predicts most fairly on human-written essays
+
+. . .
+
+:::callout-note
+## Question
+By this workflow, which of the first definitions of fairness is encoded as more important?
+:::
+
+
+## Balancing two notions of fairness
+
+<!-- This reflects the belief that it is more unfair to fail to detect GPT-generated work than it is to disproportionately classify human-written work from non-native English writers as GPT-generated, as it is possible that the model that most proportionately classifies human-written work from native and non-native English writers as GPT-generated is not among the recommended models. -->
+
+Find the most performant detectors:
+
+```{r perf-dets}
+performant_detectors <- 
+  detectors %>%
+  group_by(detector) %>%
+  roc_auc(truth = kind, .pred_AI) %>%
+  arrange(desc(.estimate)) %>%
+  head(3)
+```
+
+## Balancing two notions of fairness
+
+Among the most performant detectors, choose the model that predicts most fairly on human-written essays:
+
+```{r perf-dets2}
+detectors %>%
+  filter(kind == "Human", detector %in% performant_detectors$detector) %>%
+  group_by(detector) %>%
+  equal_opportunity_by_native(
+    truth = kind, 
+    estimate = .pred_class, 
+    event_level = "second"
+  ) %>%
+  arrange(.estimate)
+```
+
+## Balancing two notions of fairness
+
+:::callout-note
+## Take-home📝
+Switch the order of these steps. Does this result in a different set of recommended models?
+:::
+
+<!-- We could also reverse the process, reflecting the belief that it is more unfair to disproportionately classify human-written work from non-native English writers as GPT-generated than it is to pass on output from GPTs as one's own work. We first set a threshold based on `equal_opportunity()`, then choose the most performant model by `roc_auc()`: -->
+
+```{r eq-opp-dets}
+#| eval: false
+#| include: false
+equal_opportunity_detectors <- 
+  detectors %>%
+  filter(kind == "Human") %>%
+  group_by(detector) %>%
+  equal_opportunity_by_native(
+    truth = kind, 
+    estimate = .pred_class, 
+    event_level = "second"
+  ) %>%
+  arrange(.estimate) %>%
+  head(3)
+
+detectors %>%
+  filter(detector %in% equal_opportunity_detectors$detector) %>%
+  group_by(detector) %>%
+  roc_auc(truth = kind, .pred_AI) %>%
+  arrange(desc(.estimate))
+```
+
+<!-- In this example, changing the prioritization of the criteria results in a different set of recommended models. -->
 
 ## Resources
 
