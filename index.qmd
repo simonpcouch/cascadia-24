@@ -360,7 +360,7 @@ _Mitigating unfairness requires a focus on more than just the model._
 
 # {background-color="#CA225E"}
 
-<span style="font-size:170%">Choose tools that support thinking about the hard parts.</span> 
+<span style="font-size:170%">_Choose tools that support thinking about the hard parts._</span> 
 
 ## Resources
 
