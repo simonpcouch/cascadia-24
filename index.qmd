@@ -91,7 +91,7 @@ Is _this_ fair?
 [github.com/ccao-data/public](https://github.com/ccao-data/public/raw/main/presentations/2023-09-20_Posit-conf.pptx)
 :::
 
-# Context matters {background-color="#CA225E"}
+# Fairness is about our beliefs {background-color="#CA225E"}
 
 . . .
 
@@ -344,7 +344,7 @@ How will these predictions even be used, though?
 
 . . .
 
-_Mitigating unfairness requires a focus on more than just the model._
+_Metrics evaluate the model, but the model is one part of a larger system._
 
 ----
 
@@ -352,7 +352,7 @@ _Mitigating unfairness requires a focus on more than just the model._
 
 :::incremental
 
-* Understanding what fairness means to you (or stakeholders) in a problem context
+* Articulating what fairness means to you (or stakeholders) in a problem context
 * Choosing a mathematical measure of fairness that speaks to that meaning
 * Situating the resulting measure in the whole system
 
