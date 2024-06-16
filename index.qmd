@@ -324,46 +324,21 @@ _Definitions of fairness "are not mathematically or morally compatible in genera
 <span style="font-size:150%; color:#ffffff;">Mitchell et al. 2021</span>
 :::
 
-# {background-color="#CA225E"}
-
-<span style="font-size:140%"> ...but there's one more step </span>
-
-. . .
-
-<span style="font-size:300%">**The whole system**</span> 
-
-----
+# The whole system {background-color="#CA225E"}
 
 ## The whole system
 
 How will these predictions even be used, though?
 
-## The whole system: fixed percentage
+## The whole system
 
-All properties taxed at .9% assessed value
-
-```{r}
-
-```
-
-
-<!-- :::incremental -->
-
-<!-- * **Fixed Percentage**: All properties taxed at .9% assessed value -->
-<!-- - maybe MPE... show resulting taxes from the three different approaches -->
-<!-- * **Homeowner Exemption**: First xyz not taxed, then .9% assessed value -->
-<!-- - maybe different curves for different owners... -->
-<!-- * **Transitioning from regressivity**: Is a rapid change in assessment unfair? -->
-<!-- - some blend of regressive and R^2 over time -->
-<!-- ::: -->
+:::incremental
+* **Fixed Percentage**: All properties taxed at .9% assessed value
+* **Homeowner Exemption**: For those that live in the home they own, first xyz not taxed, then .9% assessed value
+* **Transitioning from regressivity**: Is a rapid change in assessment unfair?
+:::
 
 <!-- First example might prefer MPE, second might prefer R^2, third might prefer some blend of the regressive example and another. -->
-
-<!-- * fixed proportion -->
-<!-- * adjust proportion -->
-<!-- * raise proportion as value grows -->
-<!-- * cut off at certain -->
-
 
 # The whole system {background-color="#CA225E"}
 
