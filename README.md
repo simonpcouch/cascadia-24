@@ -1,25 +1,22 @@
-![A poster displaying the talk title, "Fair machine learning," as well as my name and username. Beside the text is a set of six hexagonal logos, showing hex stickers for selected tidymodels packages.](figures/hero.png)
+![A poster displaying the talk title, "Fair machine learning," as well as my name and website simonpcouch.com. Beside the text is a set of six hexagonal logos, showing hex stickers for selected tidymodels packages.](figures/hero.png)
 
 This repository contains source code and slides for the talk "Fair machine learning" at [Cascadia R Conf](https://cascadiarconf.org/) in June 2024.
 
 * The **slides** for the talk are available [here](https://simonpcouch.github.io/cascadia-24).
-* The example analysis **Are GPT detectors fair?** is available [here](https://www.tidymodels.org/learn/work/fairness-detectors/).
-* The example analysis **Fair prediction of hospital readmission** is [here](https://www.tidymodels.org/learn/work/fairness-readmission/).
 
-To learn more about data science and machine learning with R,
+To learn more about machine learning with R,
 
-- Data science with the tidyverse: [r4ds.hadley.nz](r4ds.hadley.nz)
 - Machine learning with tidymodels: [tmwr.org](tmwr.org)
 - More example notebooks with tidymodels: [tidymodels.org](tidymodels.org)
+  * The example analysis **Are GPT detectors fair?** is available [here](https://www.tidymodels.org/learn/work/fairness-detectors/).
+  * The example analysis **Fair prediction of hospital readmission** is [here](https://www.tidymodels.org/learn/work/fairness-readmission/).
 
-----
+I mentioned these works in the talk:
 
-To install the packages needed to run this code yourself, use the following R code:
-
-```r
-# if needed:
-install.packages("tidymodels", "detectors")
-```
+* [ccao-data/public](github.com/ccao-data/public) from folks at the Cook County Assessor's Office—source code for a talk that inspired the property assessment example.
+* [An Unfair Burden](https://apps.chicagotribune.com/news/watchdog/cook-county-property-tax-divide/assessments.html) by Jason Grotto in 2017, an article from the Chicago Tribune investigating unfairness in Cook County's property tax system.
+* [How Lower-Income Americans Get Cheated on Property Taxes](https://www.nytimes.com/2021/04/03/opinion/sunday/property-taxes-housing-assessment-inequality.html) from the NYTimes Editorial Board in 2021, which performs a similar analysis across counties in the US and additionally engages with the racial disparities in property taxation.
+* [Algorithmic Fairness: Choices, Assumptions, and Definitions](https://www.annualreviews.org/content/journals/10.1146/annurev-statistics-042720-125902) from Mitchell et al. in 2021. A great reference for the various choices and assumptions that underlie fairness-oriented analysis of ML models.
 
 ----
 
