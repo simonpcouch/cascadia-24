@@ -101,13 +101,17 @@ _The same model parameters can result in behavior that feels totally benign when
 
 <!-- I work on a set of packages for machine learning in R... -->
 
-![](figures/packages.png){fig-alt=''   style="display: block; margin-left: auto; margin-right: auto; width: 50%;"}
+![](figures/packages.png){fig-alt='A set of hexagonal stickers. The top sticker, which is also larger than the rest, is labeled tidymodels, while the rest contain package names like parsnip and yardstick.'   style="display: block; margin-left: auto; margin-right: auto; width: 50%;"}
 
 ---
 
 <!-- This was actually quite a big deal---variants of this story have appeared in publications across the country in the last 10 years. One of a swath of examples where deployment of predictive models deepens inequities in our communities. -->
 
-![](figures/chicago_tribune.gif){fig-alt='' style="display: block; margin-left: auto; margin-right: auto; width: 75%; box-shadow: 5px 5px 10px gray;"}
+![](figures/chicago_tribune.gif){fig-alt='A gif screenshot of a news headline from the Chicago Tribune, titled "An Unfair Burden." A video of a drive through a southside Chicago neighborhood plays in the background.' style="display: block; margin-left: auto; margin-right: auto; width: 75%; box-shadow: 5px 5px 10px gray;"}
+
+:::footer
+[github.com/ccao-data/public](https://github.com/ccao-data/public/raw/main/presentations/2023-09-20_Posit-conf.pptx)
+:::
 
 # Defining fairness {background-color="#CA225E"}
 
@@ -224,7 +228,7 @@ residual_plot +
 
 ## Proposal: Similar percentage error is most fair
 
-<!-- If we could, we'd just "shrink" the errors for those smaller property values. If we could have done that, though, we wouldn't need a model at all. So, artifically inflate errors on the upper end of the distribution by multiplying the prediction by a random factor that increases in magnitude with the predicted value. -->
+<!-- If we could, we'd just "shrink" the errors for those smaller property values. If we could have done that, though, we wouldn't need a model at all. So, artifically inflate errors on the upper end of the distribution by multiplying the prediction by a random factor that increases in magnitude with the predicted value or train an ensemble with an MPE metric. -->
 
 . . .
 
@@ -233,7 +237,7 @@ residual_plot +
 #| echo: false
 #| fig-width: 5
 #| fig-align: "center"
-#| fig-alt: ""
+#| fig-alt: "Predictions from a similarly well-calibrated model, but whose percentage error is consistent across the outcome distribution—assessments for more expensive homes have larger absolute errors."
 set.seed(1)
 mpe <-
   tibble(
