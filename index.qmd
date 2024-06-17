@@ -99,27 +99,9 @@ _The same model parameters can result in behavior that feels totally benign when
 
 ---
 
-<!-- Borne of these examples is a diverse and active research community, aiming to answer the questions 1) What does it mean for a machine learning system to act fairly? and 2) how can we make systems act more fairly? -->
-
-<br><br><br>
-![](figures/scholar_search.png){fig-alt='' style="display: block; margin-left: auto; margin-right: auto; width: 80%; box-shadow: 5px 5px 10px gray;"}
-
----
-
-<br><br><br>
-![](figures/scholar_search_emph.png){fig-alt='' style="display: block; margin-left: auto; margin-right: auto; width: 80%; box-shadow: 5px 5px 10px gray;"}
-
----
-
 <!-- I work on a set of packages for machine learning in R... -->
 
 ![](figures/packages.png){fig-alt=''   style="display: block; margin-left: auto; margin-right: auto; width: 50%;"}
-
----
-
-<!-- We run an annual user survey... -->
-
-![](figures/survey_results.png){fig-alt='' style="display: block; margin-left: auto; margin-right: auto; width: 40%; box-shadow: 5px 5px 10px gray;"}
 
 ---
 
@@ -284,32 +266,6 @@ mpe_plot <- mpe %>%
 mpe_plot
 ```
 
-----
-
-## Defining fairness
-
-What was our process?
-
-:::incremental
-
-* Take some morally held belief about fairness
-* Find an evaluation metric that reflects that belief
-
-:::
-
-. . .
-
-The metrics, though, ultimately reflect the belief system that they arose from...
-
-## Defining fairness
-
-What was our process?
-
-* Take some morally held belief about fairness
-* Find an evaluation metric that reflects that belief
-
-The metrics, though, ultimately reflect the belief system that they arose from, and are thus no more compatible than our morally held beliefs of what is fair.
-
 # Defining fairness {background-color="#CA225E"}
 
 <br>
@@ -329,8 +285,6 @@ _Definitions of fairness "are not mathematically or morally compatible in genera
 ## The whole system
 
 How will these predictions even be used, though?
-
-## The whole system
 
 :::incremental
 * **Fixed Percentage**: All properties taxed at .9% assessed value
