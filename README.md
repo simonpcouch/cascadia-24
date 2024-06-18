@@ -5,9 +5,9 @@ This repository contains source code and slides for the talk "Fair machine learn
 To learn more about machine learning with R:
 
 - Machine learning with tidymodels: [tmwr.org](tmwr.org)
-- More example notebooks with tidymodels: [tidymodels.org](tidymodels.org)
-  * The example analysis **Are GPT detectors fair?** is available [here](https://www.tidymodels.org/learn/work/fairness-detectors/).
-  * The example analysis **Fair prediction of hospital readmission** is [here](https://www.tidymodels.org/learn/work/fairness-readmission/).
+- More example notebooks with tidymodels are at [tidymodels.org](tidymodels.org). Two fairness-oriented ones:
+  * Example analysis [Are GPT detectors fair?](https://www.tidymodels.org/learn/work/fairness-detectors/)
+  * Example analysis [Fair prediction of hospital readmission](https://www.tidymodels.org/learn/work/fairness-readmission/).
 
 I mentioned these works in the talk:
 
