@@ -1,10 +1,8 @@
 ![A poster displaying the talk title, "Fair machine learning," as well as my name and website simonpcouch.com. Beside the text is a set of six hexagonal logos, showing hex stickers for selected tidymodels packages.](figures/hero.png)
 
-This repository contains source code and slides for the talk "Fair machine learning" at [Cascadia R Conf](https://cascadiarconf.org/) in June 2024.
+This repository contains source code and slides for the talk "Fair machine learning" at [Cascadia R Conf](https://cascadiarconf.org/) in June 2024. The **slides** for the talk are available [here](https://simonpcouch.github.io/cascadia-24).
 
-* The **slides** for the talk are available [here](https://simonpcouch.github.io/cascadia-24).
-
-To learn more about machine learning with R,
+To learn more about machine learning with R:
 
 - Machine learning with tidymodels: [tmwr.org](tmwr.org)
 - More example notebooks with tidymodels: [tidymodels.org](tidymodels.org)
