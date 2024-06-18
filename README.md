@@ -8,6 +8,7 @@ To learn more about machine learning with R:
 - More example notebooks with tidymodels are at [tidymodels.org](tidymodels.org). Two fairness-oriented ones:
   * [Are GPT detectors fair?](https://www.tidymodels.org/learn/work/fairness-detectors/), focused on how different fairness metrics encoded different interpretations of fairness across linguistic proficiency.
   * [Fair prediction of hospital readmission](https://www.tidymodels.org/learn/work/fairness-readmission/), focused on training models that are near-fair with respect to a set of fairness metrics across racial groups.
+- An [overview](https://www.tidyverse.org/blog/2024/03/tidymodels-fairness/) of our reading group's conclusions and the kinds of fairness-oriented workflows we decided to support.
 
 I mentioned these works in the talk:
 
